@@ -1,0 +1,20 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/PlayerController.h"
+#include "HeroController.generated.h"
+
+/**
+ * 
+ */
+UCLASS()
+class GAMEPROJECT_2D_API AHeroController : public APlayerController
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
+	int32 te;
+	
+};
