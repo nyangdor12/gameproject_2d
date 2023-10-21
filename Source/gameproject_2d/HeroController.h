@@ -13,8 +13,4 @@ UCLASS()
 class GAMEPROJECT_2D_API AHeroController : public APlayerController
 {
 	GENERATED_BODY()
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Default")
-	int32 te;
-	
 };
