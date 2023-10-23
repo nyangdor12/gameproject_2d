@@ -1,6 +1,6 @@
 #pragma once
 #include "Interactable.generated.h"
-
+//codes are modified from unreal engine 4 scripting language book by cook
 /** */
 UINTERFACE(Blueprintable)
 class GAMEPROJECT_2D_API UInteractable : public UInterface

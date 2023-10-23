@@ -10,5 +10,5 @@ void ALedge::PerformInteract_Implementation()
 
 void ALedge::Open_Implementation()
 {
-	AddActorLocalOffset(FVector(0, 0, 200));
+	AddActorLocalOffset(FVector(0, 0, -100));
 }
