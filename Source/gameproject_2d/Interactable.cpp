@@ -1,8 +1,11 @@
 #include "Interactable.h"
 #include "gameproject_2d.h"
 
-FString IInteractable::GetTestName()
+/*bool IInteractable::CanInteract_Implementation()
 {
-	unimplemented();
-	return FString();
+	return true;
 }
+
+void IInteractable::PerformInteract_Implementation()
+{
+}*/
