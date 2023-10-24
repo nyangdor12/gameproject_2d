@@ -24,6 +24,7 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	AActor* DoorToOpen;
-private:
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool HasBeenPushed;
 };
