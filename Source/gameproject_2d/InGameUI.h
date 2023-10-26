@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "DialogueStructs.h"
 #include "InGameUI.generated.h"
 
 /**
@@ -43,6 +44,17 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Animation Events")
 	void OnHideMessage();
 
+public:
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Animation Events")
+	void OnResetOptions();
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Animation Events")
+	void OnHighLightOption(int32 Option);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Animation Events")
+	void OnSetOption(int32 Option, const FText& OptionText);
+
 
 public:
 
@@ -50,9 +62,15 @@ public:
 
 	void SetCharacterName(const FString& Text);
 
-	void AnimateMessage(const FString& Name, const FString& Text);
+	void AnimateMessage(const FString& Text);
 
 	void Interact();
+
+	void InitializeDialogue(class UDataTable* DialogueTable);
+
+	void OnSelectUpOption();
+
+	void OnSelectDownOption();
 
 private:
 
@@ -61,12 +79,24 @@ private:
 	UFUNCTION()
 	void OnTimerCompleted();
 
-	bool bAnimating = false;
-	bool bTextCompleted = false;
+	UFUNCTION()
+	void OnAnimationTimerCompleted();
 
 	FString InitialMessage;
 
 	FString OutputMessage;
 
 	int32 iLetter;
+
+private:
+
+	int32 CurrentState = 0; // 0 = None, 1 = Animating, 2 == Text completed
+
+	int32 SelectectedOption;
+
+	TArray<FDialogNPC*> Dialogue;
+
+	int32 MessageIndex;
+
+	int32 RowIndex;
 };

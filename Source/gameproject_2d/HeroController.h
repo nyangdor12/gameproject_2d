@@ -28,6 +28,11 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Inputs")
 	void Interact();
 
+	UFUNCTION(BlueprintCallable, Category = "Inputs")
+	void OnKeyUp();
+
+	UFUNCTION(BlueprintCallable, Category = "Inputs")
+	void OnKeyDown();
 
 	///// UI //////
 protected:
@@ -41,4 +46,9 @@ protected:
 public:
 
 	FORCEINLINE UInGameUI* GetUI() { return InGameUI; };
+
+protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dialogue")
+	class UDataTable* IntroDialogue;
 };
