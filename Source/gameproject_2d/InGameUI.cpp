@@ -110,6 +110,9 @@ void UInGameUI::Interact()
 				CurrentState = 0; // Complete the dialogue
 				OnAnimationHideMessageUI();
 
+				// Call the event to complete the dialogue
+				OnDialogueCompleted.Broadcast();
+
 			}
 		}
 	}
@@ -132,6 +135,9 @@ void UInGameUI::Interact()
 		{
 			CurrentState = 0; // Complete the dialogue
 			OnAnimationHideMessageUI();
+
+			// Call the event to complete the dialogue
+			OnDialogueCompleted.Broadcast();
 
 		}
 	}

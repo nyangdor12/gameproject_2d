@@ -5,11 +5,11 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "DialogueStructs.h"
+#include "Delegates/Delegate.h"
 #include "InGameUI.generated.h"
 
-/**
- * 
- */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDialogueCompletedDelegate);
+
 UCLASS()
 class GAMEPROJECT_2D_API UInGameUI : public UUserWidget
 {
@@ -99,4 +99,8 @@ private:
 	int32 MessageIndex;
 
 	int32 RowIndex;
+
+public:
+	UPROPERTY(BlueprintAssignable, Category = "Events")
+	FDialogueCompletedDelegate OnDialogueCompleted;
 };

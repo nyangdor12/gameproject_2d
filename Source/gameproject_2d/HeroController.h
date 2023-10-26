@@ -13,6 +13,10 @@ UCLASS()
 class GAMEPROJECT_2D_API AHeroController : public APlayerController
 {
 	GENERATED_BODY()
+protected:
+
+	// Reference to the pawn
+	class AHero* MyCharacter;
 
 public:
 
@@ -42,6 +46,9 @@ protected:
 
 	TSubclassOf<class UUserWidget> InGameUIClass;
 
+	// Event handle
+	UFUNCTION()
+	void OnIntroDialogueCompleted();
 
 public:
 

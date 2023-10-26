@@ -3,6 +3,8 @@
 
 #include "HeroController.h"
 #include "InGameUI.h"
+#include "Hero.h"
+#include "InteractiveBase.h"
 
 AHeroController::AHeroController()
 {
@@ -17,6 +19,13 @@ void AHeroController::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// Get reference to the character controllerd by this player controller
+	APawn* const pawn = GetPawn();
+
+	if (pawn != nullptr)
+	{
+		MyCharacter = Cast<AHero>(pawn);
+	}
 
 	// Create InGameUI and add it to the viewpoert
 	if (InGameUIClass != nullptr)
@@ -41,8 +50,19 @@ void AHeroController::BeginPlay()
 		{
 			SetCinematicMode(true, true, true);
 			InGameUI->InitializeDialogue(IntroDialogue);
+			// Subscribe to the event
+			InGameUI->OnDialogueCompleted.AddDynamic(this, &AHeroController::OnIntroDialogueCompleted);
 		}
 	}
+}
+
+void AHeroController::OnIntroDialogueCompleted()
+{
+	if (InGameUI != nullptr)
+	{
+		InGameUI->OnDialogueCompleted.RemoveDynamic(this, &AHeroController::OnIntroDialogueCompleted);
+	}
+	SetCinematicMode(false, true, true);
 }
 
 void AHeroController::SetupInputComponent()
@@ -57,10 +77,15 @@ void AHeroController::SetupInputComponent()
 
 void AHeroController::Interact()
 {
+	if ((MyCharacter != nullptr) && (MyCharacter->GetInteractive() != nullptr))
+	{
+		MyCharacter->GetInteractive()->Interact();
+	}
+
 	if (InGameUI != nullptr)
 	{
 		InGameUI->Interact();
-	}
+	}	
 }
 
 void AHeroController::OnKeyUp()

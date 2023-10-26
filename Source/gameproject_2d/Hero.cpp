@@ -3,7 +3,23 @@
 
 #include "Hero.h"
 
-/*void AHero::BeginPlay()
+void AHero::SetInteractiveInRange(class AInteractiveBase* Interactive)
 {
-	//PC_Ref = Cast<AHeroController>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
-}*/
+	
+	if (Interactive != nullptr)
+	{
+		CurrentInteractive = Interactive;
+		GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red,
+			FString::Printf(TEXT("current interactive is set")));
+
+
+	}
+}
+
+void AHero::ClearInteractiveInRange(class AInteractiveBase* Interactive)
+{
+	if (Interactive != nullptr)
+	{
+		CurrentInteractive = nullptr;
+	}
+}
