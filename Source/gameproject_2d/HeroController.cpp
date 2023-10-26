@@ -28,10 +28,27 @@ void AHeroController::BeginPlay()
 	{
 		InGameUI->AddToViewport();
 
-
+		InGameUI->AnimateMessage("Blue Robot", "This is an animated text letter by letter");
+		
 		// OLD TEST
-		InGameUI->SetMessage("HELLO WORLD!");
-		InGameUI->SetCharacterName("Blue Robot");
-		InGameUI->OnAnimationShowMessageUI();
+		//InGameUI->SetMessage("HELLO WORLD!");
+		//InGameUI->SetCharacterName("Blue Robot");
+		//InGameUI->OnAnimationShowMessageUI();
+	}
+}
+
+void AHeroController::SetupInputComponent()
+{
+	Super::SetupInputComponent();
+
+	InputComponent->BindAction("Interact", IE_Pressed, this, &AHeroController::Interact);
+
+}
+
+void AHeroController::Interact()
+{
+	if (InGameUI != nullptr)
+	{
+		InGameUI->Interact();
 	}
 }

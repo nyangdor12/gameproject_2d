@@ -14,6 +14,10 @@ class GAMEPROJECT_2D_API UInGameUI : public UUserWidget
 {
 	GENERATED_BODY()
 
+protected:
+	
+	UPROPERTY(EditAnywhere, Category = "UI Message Settings")
+	float DelayBetweenLetters = 0.3f;
 
 protected:
 
@@ -45,4 +49,24 @@ public:
 	void SetMessage(const FString& Text);
 
 	void SetCharacterName(const FString& Text);
+
+	void AnimateMessage(const FString& Name, const FString& Text);
+
+	void Interact();
+
+private:
+
+	FTimerHandle TimerHandle;
+
+	UFUNCTION()
+	void OnTimerCompleted();
+
+	bool bAnimating = false;
+	bool bTextCompleted = false;
+
+	FString InitialMessage;
+
+	FString OutputMessage;
+
+	int32 iLetter;
 };

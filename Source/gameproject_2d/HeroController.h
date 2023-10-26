@@ -19,6 +19,16 @@ public:
 	AHeroController();
 	virtual void BeginPlay() override;
 
+protected:
+
+	virtual void SetupInputComponent() override;
+
+protected:
+
+	UFUNCTION(BlueprintCallable, Category = "Inputs")
+	void Interact();
+
+
 	///// UI //////
 protected:
 
