@@ -9,8 +9,6 @@ void AHero::SetInteractiveInRange(class AInteractiveBase* Interactive)
 	if (Interactive != nullptr)
 	{
 		CurrentInteractive = Interactive;
-		GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red,
-			FString::Printf(TEXT("current interactive is set")));
 
 
 	}
