@@ -13,4 +13,22 @@ UCLASS()
 class GAMEPROJECT_2D_API AHeroController : public APlayerController
 {
 	GENERATED_BODY()
+
+public:
+
+	AHeroController();
+	virtual void BeginPlay() override;
+
+	///// UI //////
+protected:
+
+	UPROPERTY(BlueprintReadWrite, Category = "Player UI")
+	class UInGameUI* InGameUI;
+
+	TSubclassOf<class UUserWidget> InGameUIClass;
+
+
+public:
+
+	FORCEINLINE UInGameUI* GetUI() { return InGameUI; };
 };
