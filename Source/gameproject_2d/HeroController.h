@@ -13,4 +13,49 @@ UCLASS()
 class GAMEPROJECT_2D_API AHeroController : public APlayerController
 {
 	GENERATED_BODY()
+protected:
+
+	// Reference to the pawn
+	class AHero* MyCharacter;
+
+public:
+
+	AHeroController();
+	virtual void BeginPlay() override;
+
+protected:
+
+	virtual void SetupInputComponent() override;
+
+protected:
+
+	UFUNCTION(BlueprintCallable, Category = "Inputs")
+	void Interact();
+
+	UFUNCTION(BlueprintCallable, Category = "Inputs")
+	void OnKeyUp();
+
+	UFUNCTION(BlueprintCallable, Category = "Inputs")
+	void OnKeyDown();
+
+	///// UI //////
+protected:
+
+	UPROPERTY(BlueprintReadWrite, Category = "Player UI")
+	class UInGameUI* InGameUI;
+
+	TSubclassOf<class UUserWidget> InGameUIClass;
+
+	// Event handle
+	UFUNCTION()
+	void OnIntroDialogueCompleted();
+
+public:
+
+	FORCEINLINE UInGameUI* GetUI() { return InGameUI; };
+
+protected:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dialogue")
+	class UDataTable* IntroDialogue;
 };

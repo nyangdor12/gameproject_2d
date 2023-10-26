@@ -7,7 +7,7 @@
 
 //#include "Kismet/GameplayStatics.h"
 //#include "HeroController.h"
-
+#include "Interactable.h"
 #include "Hero.generated.h"
 
 
@@ -17,15 +17,19 @@ class GAMEPROJECT_2D_API AHero : public APaperZDCharacter
 {
 	GENERATED_BODY()
 	
+protected:
+
+	class AInteractiveBase* CurrentInteractive;
+
 public:
 
-	//UPROPERTY(BlueprintReadOnly)
-	//APlayerController* PC_Ref;
+	FORCEINLINE class AInteractiveBase* GetInteractive() { return CurrentInteractive; }
 
-	//AHero();
-protected:
-	// Called when the game starts or when spawned
-	//virtual void BeginPlay() override;
 
-private:
+	////////////////// Interactives //////////////////////////////
+public:
+	void SetInteractiveInRange(class AInteractiveBase* Interactive);
+	void ClearInteractiveInRange(class AInteractiveBase* Interactive);
+
+	////////////////// Interactives //////////////////////////////
 };
