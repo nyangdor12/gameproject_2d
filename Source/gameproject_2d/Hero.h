@@ -57,6 +57,13 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Events")
 	void OnShowUpdatedQuestList(const TArray<FText>& QuestTextList);
 
+public:
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Events")
+	void OnShowUI(FName Character);
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Events")
+	void OnHideUI();
+
 protected:
 
 	void UpdateAndShowQuestList();
