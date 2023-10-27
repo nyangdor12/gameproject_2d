@@ -6,7 +6,7 @@
 #include "PaperZDCharacter.h"
 
 //#include "Kismet/GameplayStatics.h"
-//#include "HeroController.h"
+#include "QuestStructs.h"
 #include "Interactable.h"
 #include "Hero.generated.h"
 
@@ -32,4 +32,42 @@ public:
 	void ClearInteractiveInRange(class AInteractiveBase* Interactive);
 
 	////////////////// Interactives //////////////////////////////
+
+	/////////////////////// Quest ///////////////////////////////
+protected:
+
+
+	TArray<FQuestItem> QuestList;
+
+public:
+	bool FindQuest(FName QuestID, FQuestItem& Quest);
+
+	void AcceptQuest(FName QuestID);
+
+	void MarkQuestCompleted(FName QuestID);
+
+public:
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Events")
+	void OnShowQuestInfo(FQuest Quest);
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Events")
+	void OnShowQuestCompleted(const FText& Message);
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Events")
+	void OnShowUpdatedQuestList(const TArray<FText>& QuestTextList);
+
+protected:
+
+	void UpdateAndShowQuestList();
+
+public:
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Quest")
+	bool HasItem(FName ItemID);
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Quest")
+	void RemoveItem(FName ItemID);
+
+	/////////////////////// Quest ///////////////////////////////
 };
