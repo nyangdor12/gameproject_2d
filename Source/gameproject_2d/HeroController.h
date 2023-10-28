@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "QuestStructs.h"
 #include "HeroController.generated.h"
 
 /**
@@ -33,6 +34,9 @@ protected:
 	void Interact();
 
 	UFUNCTION(BlueprintCallable, Category = "Inputs")
+	void Action();
+
+	UFUNCTION(BlueprintCallable, Category = "Inputs")
 	void OnKeyUp();
 
 	UFUNCTION(BlueprintCallable, Category = "Inputs")
@@ -58,4 +62,22 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Dialogue")
 	class UDataTable* IntroDialogue;
+
+public:
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Events")
+	void OnShowQuestInfo(FQuest Quest);
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Events")
+	void OnShowQuestCompleted(const FText& Message);
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Events")
+	void OnShowUpdatedQuestList(const TArray<FText>& QuestTextList);
+
+public:
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Events")
+	void OnShowUI(FName Char);
+
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Events")
+	void OnHideUI();
 };

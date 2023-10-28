@@ -1,9 +1,7 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "InteractiveWithQuest.h"
 #include "HeroGM.h"
 #include "Hero.h"
+#include "HeroController.h"
 
 void AInteractiveWithQuest::BeginPlay()
 {
@@ -34,7 +32,7 @@ void AInteractiveWithQuest::Interact()
 	// Quest not accepted, show info quest mark quest as a accepted
 	if (!bQuestAccepted)
 	{
-		CurrentCharacter->OnShowQuestInfo(Quest);
+		CurrentPlayerController->OnShowQuestInfo(Quest);
 		CurrentCharacter->AcceptQuest(QuestID);
 	}
 	else
@@ -47,18 +45,18 @@ void AInteractiveWithQuest::Interact()
 				CurrentCharacter->RemoveItem(Quest.ItemID);
 				CurrentCharacter->MarkQuestCompleted(QuestID);
 
-				CurrentCharacter->OnShowQuestCompleted(Quest.CompleteMessage);
+				CurrentPlayerController->OnShowQuestCompleted(Quest.CompleteMessage);
 				QuestActivated = false;
 
 			}
 			else
 			{
-				CurrentCharacter->OnShowQuestInfo(Quest);
+				CurrentPlayerController->OnShowQuestInfo(Quest);
 			}
 		}
 		else
 		{
-			CurrentCharacter->OnShowQuestInfo(Quest);
+			CurrentPlayerController->OnShowQuestInfo(Quest);
 		}
 	}
 }

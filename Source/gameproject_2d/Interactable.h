@@ -13,5 +13,7 @@ class GAMEPROJECT_2D_API IInteractable
 {
 	GENERATED_BODY()
 public:
-	virtual FString GetTestName();
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Interact")
+	void OnInteract();
+
 };

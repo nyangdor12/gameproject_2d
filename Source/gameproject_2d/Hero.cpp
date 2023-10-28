@@ -3,6 +3,8 @@
 
 #include "Hero.h"
 #include "HeroGM.h"
+#include "HeroController.h"
+#include "Kismet/GameplayStatics.h"
 
 void AHero::SetInteractiveInRange(class AInteractiveBase* Interactive)
 {
@@ -96,6 +98,37 @@ void AHero::UpdateAndShowQuestList()
 			}
 		}
 
-		OnShowUpdatedQuestList(QuestTextList);
+		Cast<AHeroController>(UGameplayStatics::GetPlayerController(GetWorld(), 0))->OnShowUpdatedQuestList(QuestTextList);
+	}
+}
+
+void AHero::OnEnterActor(AActor* InteractableActor)
+{
+	if (InteractableActor != nullptr)
+	{
+		bool IsInterface = UKismetSystemLibrary::DoesImplementInterface(InteractableActor, UInteractable::StaticClass());
+		if (IsInterface)
+		{
+			CurrentInteractableActor = InteractableActor;
+
+			CurrentInteractable = Cast<IInteractable>(InteractableActor);
+		}
+	}
+}
+
+
+void AHero::OnLeaveActor()
+{
+	CurrentInteractable = nullptr;
+	CurrentInteractableActor = nullptr;
+}
+
+void AHero::Action()
+{
+	if (CurrentInteractable != nullptr)
+	{
+		// Execute the interact event
+		IInteractable::Execute_OnInteract(CurrentInteractableActor);
+
 	}
 }

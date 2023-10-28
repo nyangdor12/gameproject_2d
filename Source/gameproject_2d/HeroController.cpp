@@ -70,6 +70,7 @@ void AHeroController::SetupInputComponent()
 	Super::SetupInputComponent();
 
 	InputComponent->BindAction("Interact", IE_Pressed, this, &AHeroController::Interact);
+	InputComponent->BindAction("Interact", IE_Pressed, this, &AHeroController::Action).bConsumeInput = false;
 	InputComponent->BindAction("KeyUp", IE_Pressed, this, &AHeroController::OnKeyUp).bConsumeInput = false;
 	InputComponent->BindAction("KeyDown", IE_Pressed, this, &AHeroController::OnKeyDown).bConsumeInput = false;
 
@@ -86,6 +87,14 @@ void AHeroController::Interact()
 	{
 		InGameUI->Interact();
 	}	
+}
+
+void AHeroController::Action()
+{
+	if (MyCharacter != nullptr)
+	{
+		MyCharacter->Action();
+	}
 }
 
 void AHeroController::OnKeyUp()

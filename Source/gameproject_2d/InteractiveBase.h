@@ -17,10 +17,10 @@ public:
 protected:
 
 	// Components
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Interactive")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InteractiveComponent")
 	class USceneComponent* RootScene;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Interactive")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InteractiveComponent")
 	class UBoxComponent* InteractiveCollision;
 
 protected:

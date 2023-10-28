@@ -67,7 +67,25 @@ public:
 protected:
 
 	void UpdateAndShowQuestList();
+	//// Interactives ///////
 
+protected:
+
+	AActor* CurrentInteractableActor;
+
+	IInteractable* CurrentInteractable;
+
+
+public:
+
+	void OnEnterActor(AActor* InteractableActor);
+
+	void OnLeaveActor();
+
+public:
+	void Action();
+
+	//// Interactives ///////
 public:
 
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Quest")
